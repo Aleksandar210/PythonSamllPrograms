@@ -1,0 +1,9 @@
+Fire_dragon 100
+Undead_warrior 59
+Undead_wizard 80
+Spider 80
+Assassin_servant 100
+Giant 200
+Fire_horse 300
+Desert_warrior 179
+Ice_yeti 500
