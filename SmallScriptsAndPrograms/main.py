@@ -9,8 +9,7 @@ def print_hi(name):
     """
     print(f'Hi, {name}')
 
+
 if __name__ == '__main__':
-    var = 10
-    alter_variable_function(var)
-    function_add_test(var, 10)
+    pass
 
