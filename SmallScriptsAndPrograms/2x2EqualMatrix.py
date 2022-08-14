@@ -4,12 +4,16 @@ multidimensional_array = list()
 def get_input():
     height, width = [int(n) for n in input().split()]
     count = 0
+    
     if validate_array(height, width):
         fill_array(height)
+
         for _ in range(len(multidimensional_array) - 1):
             for __ in range(len(multidimensional_array[_]) - 1):
+
                 first, second = multidimensional_array[_][__], multidimensional_array[_][__ + 1]
                 third, fourth = multidimensional_array[_ + 1][__], multidimensional_array[_ + 1][__ + 1]
+
                 if first == second and first == third and first == fourth:
                     count += 1
                     print(f"{first} {second}\n{third} {fourth}\n")
