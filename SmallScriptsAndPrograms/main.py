@@ -12,5 +12,6 @@ def print_hi(name):
 
 if __name__ == '__main__':
     multidim = [1,2,3,4]
-    print(len(multidim))
+    for _ in range(len(multidim) - 1):
+        print(multidim[_])
 
