@@ -5,7 +5,6 @@ end_game_message = "Player "
 
 
 def play_round(end_game_message: str):
-
     print("(enter end to stop the game)")
     player_choice = input("Enter rock,paper or scissors: ")
 
@@ -105,6 +104,7 @@ def run(end_game_message: str):
         score_message += f"{player_score}\nAI score: {ai_score}"
 
     print(score_message)
+
 
 # execution of program
 run(end_game_message)
