@@ -1,8 +1,13 @@
 import pyodbc
+import random
 
 connection = pyodbc.Connection
 cursor = pyodbc.Cursor
-OPTION_MENU_STRING = "1|Add new hero!\n2|Delete hero\n3|Exit menu!"
+
+OPTION_MENU_STRING = "1|Add new hero!\n2|Delete hero\n3|Start Game\n4|Exit menu!"
+OPTION_LEVEL_STRING = None
+
+current_monster_shuffle = {}
 
 
 def connect_to_server():
@@ -30,6 +35,8 @@ def connect_to_server():
                 case 2:
                     delete_hero(cursor, connection)
                 case 3:
+                    pass
+                case 4:
                     print("Good bye!")
                     break
                 case other:
@@ -91,6 +98,12 @@ def add_new_hero(current_cursor: pyodbc.Cursor, current_connection: pyodbc.Conne
 
 
 def delete_hero(current_cursor: pyodbc.Cursor, current_connection: pyodbc.Connection):
+    """
+    Description:
+    we get with the cursor the available heros in the HEROS table
+    we then display the heros and ask the user to select an ID to delete
+    And we finally delete the hero from the table
+    """
     current_heros = {}
 
     current_cursor.execute(
@@ -116,9 +129,17 @@ def delete_hero(current_cursor: pyodbc.Cursor, current_connection: pyodbc.Connec
         else:
             continue
 
+# TODO FINISH
+def get_monsters_for_leve(current_cursor:pyodbc.Cursor, leve_id: int):
+    global current_monster_shuffle
+
+    current_cursor.execute("SELECT MONSTER_ID, MONSTER_NAME, MONSTER_HP, MONSTER_DAMAGE")
+
+
+
 
 def fight_monster(current_cursor: pyodbc.Cursor, current_connection: pyodbc.Connection):
-    pass
+
 
 
 connect_to_server()
