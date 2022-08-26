@@ -4,7 +4,7 @@ import random
 connection = pyodbc.Connection
 cursor = pyodbc.Cursor
 
-OPTION_MENU_STRING = "1|Add new hero!\n2|Delete hero\n3|Start Game\n4|Exit menu!"
+OPTION_MENU_STRING = "1|Add new hero!\n2|Delete hero\n3|Select hero\n4|Start Game!\n5|Exit!"
 OPTION_LEVEL_STRING = None
 
 current_monster_shuffle = {}
@@ -37,6 +37,8 @@ def connect_to_server():
                 case 3:
                     pass
                 case 4:
+                    pass
+                case 5:
                     print("Good bye!")
                     break
                 case other:
@@ -129,17 +131,21 @@ def delete_hero(current_cursor: pyodbc.Cursor, current_connection: pyodbc.Connec
         else:
             continue
 
-# TODO FINISH
-def get_monsters_for_leve(current_cursor:pyodbc.Cursor, leve_id: int):
+
+def get_monsters_for_level(current_cursor: pyodbc.Cursor, leve_id: int):
     global current_monster_shuffle
 
-    current_cursor.execute("SELECT MONSTER_ID, MONSTER_NAME, MONSTER_HP, MONSTER_DAMAGE")
+    current_cursor.execute("SELECT  MONSTER_NAME, MONSTER_HP, MONSTER_DAMAGE, MONSTER_REWARD FROM MONSTERS")
+
+    for monster_item in current_cursor:
+        current_monster_shuffle[str(monster_item[0])] = (int(monster_item[1]),
+                                                         int(monster_item[2]), float(monster_item[3]))
 
 
 
 
 def fight_monster(current_cursor: pyodbc.Cursor, current_connection: pyodbc.Connection):
-
+    pass
 
 
 connect_to_server()
