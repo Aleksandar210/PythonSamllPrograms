@@ -1,10 +1,10 @@
 from SmallScriptsAndPrograms import Hero
+import Level
 
 
 class GameController:
     def __init__(self):
         hero_shuffle = {}
-        monster_shuffle = {}
         levels = []
         current_selected_hero: Hero
         current_selected_level: Level
@@ -22,4 +22,7 @@ class GameController:
         pass
 
     def switch_to_hero(self, hero_name: str):
+        pass
+
+    def move_to_next_level(self):
         pass

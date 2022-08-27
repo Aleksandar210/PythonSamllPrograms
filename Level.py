@@ -1,14 +1,15 @@
 import Monster
 from SmallScriptsAndPrograms import Hero
-from typing import Type
-from collections import defaultdict
+
 import random
+import pyodbc
 
 
 class Level:
-    def __init__(self):
+    def __init__(self, current_cursor: pyodbc.Cursor):
         self.monster_shuffle = {}
         self.current_monster_selected: Monster = None
+        self.cursor = current_cursor
 
     def __select_monster_for_attack(self):
         monster_index = random.randint(0, len(self.monster_shuffle) - 1)
@@ -22,7 +23,6 @@ class Level:
             value: Monster.Monster
 
             for monster_name, value in self.monster_shuffle.items():
-
                 print(f"\n{monster_name} has received {current_hero_damage} Damage!\nHP: {value.monster_hp}"
                       f" reduced to {value.monster_hp - current_hero_damage}")
 
@@ -36,11 +36,20 @@ class Level:
                   f" reduced to {monster_value.monster_hp - current_hero_damage}")
 
             monster_value.monster_hp -= current_hero_damage
+    # TODO add the listener class
+    def __clear_current_monster(self):
+        self.current_monster_selected = None
 
-    def clear_current_monster(self):
-        pass
+        if len(self.monster_shuffle) > 0:
+            self.__select_monster_for_attack()
+        else:
+            # add listener pattern for game controller to switch
+            pass
 
+    # TODO  figure out how to do it for each level
+    def get_monsters_for_level(self):
+        self.cursor.execute("SELECT  MONSTER_NAME, MONSTER_HP, MONSTER_DAMAGE, MONSTER_REWARD FROM MONSTERS")
 
-
-
-
+        for monster_item in self.cursor:
+            self.monster_shuffle[str(monster_item[0])] = (int(monster_item[1]),
+                                                          int(monster_item[2]), float(monster_item[3]))

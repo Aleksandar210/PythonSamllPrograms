@@ -142,8 +142,6 @@ def get_monsters_for_level(current_cursor: pyodbc.Cursor, leve_id: int):
                                                          int(monster_item[2]), float(monster_item[3]))
 
 
-
-
 def fight_monster(current_cursor: pyodbc.Cursor, current_connection: pyodbc.Connection):
     pass
 
